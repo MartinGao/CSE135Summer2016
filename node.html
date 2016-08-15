@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/atom-one-dark.min.css">
+  <title>CSE 135 Summer 2016 - Martin</title>
+</head>
+
+<body>
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-3" style="text-align:center; margin-top:3em;">
+      <h1 class="ui header">Node.js Install and Setup</h1>
+    </div>
+
+
+
+
+    <div class="col-xs-6 col-xs-offset-3" style="margin-top:3em;">
+
+      <div class="ui divider"></div>
+
+      <div style="margin-top:3em;">
+        <h2 class="ui header">Install</h2>
+        <div>
+          <p>
+            There are many way to insall Node.js. You can download it directly from <a href="https://nodejs.org/en/">Node.js website</a>
+          </p>
+          <p>
+            I recommend you to use <a href="https://github.com/creationix/nvm">nvm (Node Version Manager)</a> to install Node.js </br>
+            Windows user here -> <a href="https://github.com/coreybutler/nvm-windows">nvm-windows</a>
+          </p>
+          <p>
+            The pros of using nvm is you have better control and understaning of Node.js version and which version you are using locally.
+          </p>
+          <p>
+            You can find the full documentation on the Github page. I would like to highlight some important commands here.
+          </p>
+        </div>
+
+        <div>
+          <pre><code class="js">
+            // Install Node.js version 4.4.7 (LTS version)
+            nvm install 4.4.7
+
+            // Switch to Node.js 4.4.7
+            nvm use 4.4.7
+
+            // Basically this is all you need to install Node.js.
+            // Here are some extra commands for fun
+
+            // List all your local versions of Node.js
+            nvm ls
+
+            // List all available versions of Node.js
+            nvm ls-remote
+          </code></pre>
+        </div>
+      </div>
+
+      <div class="ui divider"></div>
+
+      <div style="margin-top:3em;">
+        <h2 class="ui header">Hello World in Node.js</h2>
+        <div>
+          <p>
+            First you create a file named "hello.js" and paste the following code
+          </p>
+          <pre><code class="js">
+            console.log('Hello Wolrd!');
+          </code></pre>
+          <p>
+            Then you type the following command in terminal
+          </p>
+          <pre><code class="js">
+            node hello.js
+          </code></pre>
+          <p>
+            Here we go~
+          </p>
+        </div>
+      </div>
+
+      <div class="ui divider"></div>
+
+      <div style="margin-top:3em;">
+        <h2 class="ui header">Install Packages</h2>
+        <div>
+          <p>
+            We use npm (node package manager) to insall Node.js packages. npm comes with Node.js so you don't have to install npm separately.
+          </p>
+
+          <p>
+            For example, if we want to install express
+          </p>
+          <pre><code class="js">
+            npm install express
+          </code></pre>
+          <p>
+            We can also use package.json to manage dependencies. To create a package.json, type
+          </p>
+          <pre><code class="js">
+            npm init
+          </code></pre>
+
+          <p>
+            Then you would get something like this
+          </p>
+
+          <pre><code class="js">
+            {
+              "name": "cse135-demo",
+              "version": "1.0.0",
+              "description": "A demo package.json file for CSE 135",
+              "main": ".mongorc.js",
+              "dependencies": {},
+              "devDependencies": {},
+              "scripts": {
+                "test": "echo \"Error: no test specified\" && exit 1"
+              },
+              "author": "Martin Gao",
+              "license": "ISC"
+            }
+          </code></pre>
+          <p>
+            The next time, if we install express with "--save", express would be written into package.json file (in dependencies)
+          </p>
+          <pre><code class="js">
+            npm install express --save
+          </code></pre>
+          <pre><code class="js">
+            {
+              "name": "cse135-demo",
+              "version": "1.0.0",
+              "description": "A demo package.json file for CSE 135",
+              "main": ".mongorc.js",
+              "dependencies": {
+                "express": "^4.14.0"
+              },
+              "devDependencies": {},
+              "scripts": {
+                "test": "echo \"Error: no test specified\" && exit 1"
+              },
+              "author": "Martin Gao",
+              "license": "ISC"
+            }
+          </code></pre>
+          <p>
+            "express": "^4.14.0" means "Compatible with version 4.14.4".
+            <a href="https://docs.npmjs.com/files/package.json">More info about package.json verion syntax</a>
+          </p>
+          <p>
+            So the next time, when you or others want to install your project, they don't have to manually install every package. </br>
+            Instead, just type in "npm install", and npm will read package.json and install all the dependencies from it.
+          </p>
+          <pre><code class="js">
+            npm install
+          </code></pre>
+        </div>
+      </div>
+
+      <div style="margin-top:3em;">
+        <h2 class="ui header">Tips</h2>
+        <div>
+          <p>
+            Don't push your Node.js libraries to Github! They are HUGE! Could be 100+MB! </br>
+            Always use .gitignore to ignore those libraries.
+          </p>
+
+          <p>
+            Create a file named ".gitignore" in the root dir of your project and paste the following code into it
+          </p>
+
+          <pre><code class="js">
+            node_modules/
+          </code></pre>
+
+          <p>
+            So that your git will ignore anything inside "node_modules".
+          </p>
+        </div>
+      </div>
+
+      <div style="margin-bottom:10em;"></div>
+    </div>
+  </div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/languages/css.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>
